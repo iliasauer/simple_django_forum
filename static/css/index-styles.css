@@ -1,0 +1,79 @@
+button[type="submit"] .icon {
+  width: 10px;
+  height: 10px;
+  transition: all 0.4s;
+}
+button[type="submit"] .hover .icon {
+  transform: scale(1.2);
+}
+button[type="submit"]:hover .icon {
+  transform: scale(1.2);
+}
+button[type="submit"] .icon {
+  width: 14px;
+  height: 14px;
+  transition: all 0.4s ease-in-out;
+}
+button[type="submit"] .hover .icon {
+  transform: scale(1.2);
+}
+
+.post hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.post-space {
+  box-shadow: 0px 2px 5px 0px rgba(255, 255, 255, 0.25);
+  margin: 50px auto 20px;
+  max-width: 660px;
+  width: 660px;
+  background-color: white;
+  text-align: left;
+  font-size: 18px;
+  line-height: 1.5;
+  padding: 15px;
+  border: 2px solid #28189d;
+}
+.post-space h2 {
+  margin-bottom: 5px;
+  margin-top: 0px;
+}
+.post-space .post-date {
+  font-size: 14px;
+}
+.post-space > hr {
+  border-color: black;
+}
+.post-space .content {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.post .underlined {
+  color: black;
+  padding: 3px 0 4px;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  letter-spacing: 1px;
+  outline: none;
+}
+.post .underlined:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.5);
+  transform: translateY(10px);
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.post .underlined:hover::after {
+  opacity: 1;
+  transform: translateY(0px);
+}
+.post h2 a {
+  text-transform: uppercase;
+}

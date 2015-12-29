@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% block login %}
+<section class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-12 container-space">
+                <div>
+                <form role="form" action="/auth/signup/" method="post" class="form-signin">
+                    <h2>Registration</h2>
+                    {% csrf_token %}
+                    {{ form }}
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

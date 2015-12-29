@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+{% block login %}
+    <section class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-12 container-space">
+                <form role="form" action="/auth/login/" method="post">
+                    {% csrf_token %}
+                    <h2>Enter</h2>
+                    <div class="form-group">
+                        <label for="username-field">Login <span></span></label>
+                        <input class="form-control"  type="text" name="username" id="username-field" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="password-field">Password  <span></span></label>
+                        <input class="form-control"  type="password" name="password" id="password-field" required>
+                    </div>
+                    {% if login_error %}
+                        <label class="error">{{ login_error }}</label>
+                    {% endif %}
+                    <div class="form-group">
+                        <a class="underlined" href="/auth/signup/">Sign up</a>
+                        <button class="btn-sign" type="submit">
+                            Sign in
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

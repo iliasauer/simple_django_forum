@@ -1,0 +1,58 @@
+<!-- Threads  -->
+{% extends 'index.html' %}
+{% load staticfiles %}
+{% block forum %}
+    <a id="new_topic" class="button" href="">Start New Topic</a>
+    <form action="/forum/get/{{ forum_id }}/topic/" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit"/>
+    </form>
+
+    <div id="list">
+        <table border="0" cellpadding="4" width="100%">
+            <tr>
+                <td>Topics</td>
+                <td>Replies</td>
+                <td>Last post</td>
+                <td></td>
+            </tr>
+
+            {% for topic in topics.object_list %}
+                <tr>
+                    <td {% if forloop.last %}class="last"{% endif %}>
+                        <div class="title"><a href="/topic/get/{{ topic.id }}/">{{ topic.topic_title }}</a>
+                        </div>
+                    </td>
+                    <td {% if forloop.last %}class="last"{% endif %}>{{ topic.num_replies }}</td>
+                    <td {% if forloop.last %}class="last"{% endif %}>
+                        {{ topic.last_article.short|linebreaksbr }}</td>
+                    <td {% if forloop.last %}class="last"{% endif %}>
+                        <a class="button" href="/topic/get/{{ topic.id }}/">VIEW</a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+        </table>
+    </div>
+
+    <!-- Next/Prev page links  -->
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <ul class="pager">
+                {% if topics.has_previous %}
+                    <li><a href="/page/{{ topics.previous_page_number }}">Previous</a></li>
+                {% else %}
+                    <li class="disabled"><a href="#">Previous</a></li>
+                {% endif %}
+                {% if articles.has_next %}
+                    <li><a href="/page/{{ topics.next_page_number }}">Next</a></li>
+                {% else %}
+                    <li class="disabled"><a href="#">Next</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+{% endblock %}
