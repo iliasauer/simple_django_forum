@@ -2,15 +2,18 @@
 {% extends 'index.html' %}
 {% load staticfiles %}
 {% block forum %}
-    <a id="new_topic" class="button" href="">Start New Topic</a>
+    <h4>New topic</h4>
     <form action="/forum/get/{{ forum_id }}/topic/" method="POST">
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit"/>
+        <div class="form-group">
+            {{ form }}
+        </div>
+        <button class="btn" type="submit">Send <img class="icon" src="{% static "forum/img/submit.png" %}">
+        </button>
     </form>
 
     <div id="list">
-        <table border="0" cellpadding="4" width="100%">
+        <table class="table" border="0" cellpadding="4" width="100%">
             <tr>
                 <td>Topics</td>
                 <td>Replies</td>

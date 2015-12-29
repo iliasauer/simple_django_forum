@@ -30,7 +30,7 @@ class Forum(models.Model):
 
 class Topic(models.Model):
     class Meta:
-        db_table = "forum"
+        db_table = "topic"
     topic_title = models.CharField(max_length=100)
     topic_description = models.TextField(default='No description provided.')
     topic_forum = models.ForeignKey(Forum)

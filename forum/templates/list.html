@@ -2,11 +2,11 @@
 {% load staticfiles %}
 {% block forum %}
 <div id="list">
-    <table border="0" cellpadding="4" width="100%">
+    <table class="table table-hover" cellpadding="4" width="100%">
         <tr>
             <td></td>
-            <td>Posts</td>
-            <td>Last post</td>
+            <td>Articles</td>
+            <td>Last article</td>
             <td></td>
         </tr>
         {% for forum in forums %}
@@ -14,7 +14,7 @@
                 <td {% if forloop.last %}class="last"{% endif %}>
                     <div class="title"> <a href="/forum/get/{{ forum.id }}/">{{ forum.forum_title }}</a></div>
                 </td>
-                <td {% if forloop.last %}class="last"{% endif %}>{{ forum.num_posts }}</td>
+                <td {% if forloop.last %}class="last"{% endif %}>{{ forum.num_articles }}</td>
                 <td {% if forloop.last %}class="last"{% endif %}>
                     {{ forum.last_article.short|linebreaksbr }}</td>
                 <td {% if forloop.last %}class="last"{% endif %}>

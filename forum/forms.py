@@ -1,8 +1,6 @@
 from django.forms import ModelForm
 
-from article.models import Topic
-
-from forum.models import Article
+from forum.models import Article, Topic
 
 
 class TopicForm(ModelForm):

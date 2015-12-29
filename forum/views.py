@@ -10,7 +10,7 @@ from forum.models import Forum, Topic, Article
 
 
 def index(request):
-    return redirect('/articles/all/')
+    return redirect('/forum/all/')
 
 
 def forums(request, page_number=1):
@@ -25,7 +25,7 @@ def forum(request, forum_id=1, page_number=1):
     topic_form = TopicForm()
     args = {}
     args.update(csrf(request))
-    topics = Topic.objects.filter(forum=forum_id).order_by("-topic_created")
+    topics = Topic.objects.filter(topic_forum=forum_id).order_by("-topic_created")
     current_page = Paginator(topics, 3)
     args['topics'] = current_page.page(page_number)
     args['form'] = topic_form
@@ -38,7 +38,7 @@ def topic(request, topic_id=1, page_number=1):
     args = {}
     args.update(csrf(request))
     current_topic = Topic.objects.get(pk=topic_id)
-    articles = Article.objects.filter(topic=topic_id).order_by("-article_created")
+    articles = Article.objects.filter(article_topic=topic_id).order_by("-article_created")
     current_page = Paginator(articles, 3)
     args['topic'] = current_topic
     args['form'] = article_form
@@ -53,7 +53,7 @@ def reply(request, topic_id):
         if form.is_valid():
             article = form.save(commit=False)
             article.article_topic = current_topic
-            article.creator = auth.get_user(request).username
+            article.creator = auth.get_user(request)
             form.save()
     return redirect('/topic/get/%s/' % topic_id)
 
@@ -67,7 +67,7 @@ def addtopic(request, forum_id):
             # new_topic.topic_title = form.cleaned_data['topic_title']
             # new_topic.topic_description = form.cleaned_data['topic_description']
             new_topic.topic_forum = current_forum
-            new_topic.topic_creator = auth.get_user(request).username
+            new_topic.topic_creator = auth.get_user(request)
             new_topic.save()
     return redirect('/forum/get/%s/' % forum_id)
 
